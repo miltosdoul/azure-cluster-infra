@@ -2,9 +2,21 @@ name: Teardown deployed resources
 
 on: workflow_dispatch
 
+env:
+  ARM_CLIENT_ID=${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET=${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID=${{ secrets.ARM_TENANT_ID }}
+
 jobs:
   teardown:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - uses: actions/checkout@v4
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Test step
+        run: |
           echo "run step"
