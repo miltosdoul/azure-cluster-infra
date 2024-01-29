@@ -1,0 +1,10 @@
+name: Teardown deployed resources
+
+on: workflow_dispatch
+
+jobs:
+  teardown:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "run step"
