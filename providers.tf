@@ -19,6 +19,13 @@ terraform {
       version = "0.9.1"
     }
   }
+
+  backend "azurerm" {
+      resource_group_name  = "storage-resource-group"
+      storage_account_name = "azureplatformtfstate123"
+      container_name       = "tfstate-github-actions"
+      key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
